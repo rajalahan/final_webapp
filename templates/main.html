@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+<head>
+    <title>NetFare Prediction Model</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <b><legend>NetFare Prediction Form:</legend></b>
+		<br>
+		<br> <b>Itenerary_Type:</b>
+		<input type="radio" id="Domestic" name="itetypeinter" value="0" checked>
+		<label for="Domestic">Domestic</label>
+		<input type="radio" id="International" name="itetypeinter" value="1">
+		<label for="International">International</label><br>
+        <!--input name="itetypeinter" type="number" required -->
+        <b>Year:</b>
+		<input name="year" type="number" min="2017" max="2025" step="1" value="2018" required >
+		<br>
+        <br> <b>Month:</b>
+        <input name="month" type="number" min="1" max="12" step="1" value="0" required>
+		<br>
+        <br><b> Day:</b>
+        <input name="day" type="number" min="1" max="30" step="1" value="0" required>
+        <br>
+		<br> <b>Hour:</b>
+        <input name="hour" type="number" min="0" max="23" step="1" value="0" required>
+        <br>
+        <br> <b>Minute:</b>
+		<input name="minute" type="number" min="0" max="59" step="1" value="0" required>
+        <br>
+		<hr>
+		<h2 ><b>Booking:</b></h2>
+		<b>Product_Type_Hotel:</b>
+		<input type="radio" id="no" name="protypehot" value="0">
+		<label for="no">No</label>
+		<input type="radio" id="yes" name="protypehot" value="1" checked>
+		<label for="yes">Yes</label><br>
+        <!--input name="protypehot" type="number" required-->
+		
+		<br> <b>Product_Type_Other_Product:</b>
+		<input type="radio" id="no" name="protypeothpro" value="0">
+		<label for="no">No</label>
+		<input type="radio" id="yes" name="protypeothpro" value="1" checked>
+		<label for="yes">Yes</label><br>
+        <!--input name="protypeothpro" type="number" required-->
+		
+		<h2><b>Cancellation:</b></h2>
+		<b>Product_Type_Air_Cancellation:</b>
+		<input type="radio" id="no" name="protypeaircanc" value="0" checked>
+		<label for="no">No</label>
+		<input type="radio" id="yes" name="protypeaircanc" value="1">
+		<label for="yes">Yes</label><br>
+        <!--input name="protypeaircanc" type="number" required-->
+        		
+        <br> <b>Product_Type_Hotel_Cancellation:</b>
+		<input type="radio" id="no" name="protypehotcanc" value="0" checked>
+		<label for="no">No</label>
+		<input type="radio" id="yes" name="protypehotcanc" value="1">
+		<label for="yes">Yes</label><br>
+        <!--input name="protypehotcanc" type="number" required-->
+			
+		<br> <b>Product_Type_Air_Loss:</b>
+		<input type="radio" id="no" name="protypeairloss" value="0" checked>
+		<label for="no">No</label>
+		<input type="radio" id="yes" name="protypeairloss" value="1">
+		<label for="yes">Yes</label><br>
+        <!--input name="protypeairloss" type="number" required-->
+                   
+		<br> <b>Product_Type_Hotel_Loss:</b>
+		<input type="radio" id="no" name="protypehotloss" value="0" checked>
+		<label for="no">No</label>
+		<input type="radio" id="yes" name="protypehotloss" value="1">
+		<label for="yes">Yes</label><br>
+        <!--input name="protypehotloss" type="number" required-->
+      	  
+        <br>
+        <input type="submit">
+		<input type="reset">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br><b> Predicted NetFare:</b>
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+</html>
